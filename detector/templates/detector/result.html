@@ -1,0 +1,53 @@
+{% extends 'detector/base.html' %}
+
+{% block title %}نتیجه‌ی تشخیص{% endblock %}
+
+{% block content %}
+
+<div class="stats">
+    <div class="stat-card">
+        <div class="stat-number">{{ objects.count }}</div>
+        <div class="stat-label">شیء شناسایی‌شده</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ image.id }}</div>
+        <div class="stat-label">شناسه تصویر</div>
+    </div>
+</div>
+
+<div class="image-container">
+    <img src="{{ image.image.url }}" alt="تصویر آپلود شده">
+</div>
+
+<h2 style="margin-top: 30px; color: #333; font-size: 20px;">
+    📋 نتایج تشخیص
+</h2>
+
+{% if objects %}
+    <ul class="objects-list">
+        {% for obj in objects %}
+            <li class="object-item">
+                <span class="object-name">🎯 {{ obj.name }}</span>
+                <span class="object-confidence">
+                    دقت: {{ obj.confidence|floatformat:2 }}
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="empty-state">
+        <svg fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+        <p>هیچ شیئی شناسایی نشد!</p>
+        <p style="font-size: 13px; margin-top: 10px;">
+            لطفاً تصویری با اشیاء واضح‌تر آپلود کنید
+        </p>
+    </div>
+{% endif %}
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{% url 'upload' %}" class="btn">🔄 تصویر جدید</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'detector/base.html' %}
+
+{% block title %}آپلود تصویر{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <label for="image" style="display: block; margin-bottom: 10px; color: #555; font-weight: bold;">
+        📷 انتخاب تصویر:
+    </label>
+    <input type="file" name="image" id="image" accept="image/*" required>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <button type="submit" class="btn">🚀 تشخیص بده</button>
+    </div>
+</form>
+
+<div style="margin-top: 30px; padding: 20px; background: #f8f9ff; border-radius: 10px; font-size: 13px; color: #666;">
+    <strong>💡 راهنما:</strong>
+    <ul style="margin-top: 10px; padding-right: 20px;">
+        <li>فرمت‌های مجاز: JPG, PNG, BMP, WebP</li>
+        <li>حداکثر حجم: ۵ مگابایت</li>
+        <li>مدل YOLOv8 از ۸۰ کلاس مختلف (انسان، حیوان، ماشین و...) پشتیبانی می‌کند</li>
+    </ul>
+</div>
+{% endblock %}
