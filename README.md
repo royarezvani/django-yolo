@@ -41,7 +41,7 @@
 ## 🚀 نصب و اجرا
 
 ```bash
-git clone https://github.com/USERNAME/django-yolo.git
+git clone https://github.com/royarezvani/django-yolo.git
 cd django-yolo
 python -m venv venv
 venv\Scripts\activate
